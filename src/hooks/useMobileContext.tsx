@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export type MobileDisplays = "Chat" | "Comment" | "Post";
 
-const useMobileContextHook = () => {
+const useMobileContext = () => {
   const [selectedPostId, setSelectedPostId] = useState<number | null>(1);
   const [selectedDisplay, setSelectedDisplay] =
     useState<MobileDisplays>("Post");
@@ -13,4 +13,4 @@ const useMobileContextHook = () => {
     setSelectedPostId,
   };
 };
-export default useMobileContextHook;
+export default useMobileContext;

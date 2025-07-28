@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { CssBaseline, Stack } from "@mui/material";
-import { MobileDisplay, Sidebar, WorkflowCreator } from "./components";
+import { CssBaseline } from "@mui/material";
+import { AppProvider } from "./Providers/AppProvider";
+import BaseView from "./Views/BaseView";
 
 const theme = createTheme({
   palette: {
@@ -21,11 +22,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Stack direction="row">
-        <Sidebar />
-        <WorkflowCreator />
-        <MobileDisplay />
-      </Stack>
+      <AppProvider>
+        <BaseView />
+      </AppProvider>
     </ThemeProvider>
   );
 }

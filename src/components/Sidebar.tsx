@@ -9,6 +9,8 @@ import {
   GrainOutlined,
   HelpOutline,
 } from "@mui/icons-material";
+import { useContext } from "react";
+import { AppContext, type Views } from "../Providers/contexts";
 
 import botspaceLogo from "../assets/botspace_logo.jpg";
 
@@ -21,6 +23,18 @@ const iconStyles = {
 };
 
 export default function Sidebar() {
+  const appContext = useContext(AppContext);
+
+  if (!appContext) {
+    throw new Error("Sidebar must be used within AppProvider");
+  }
+
+  const { currentView, setCurrentView } = appContext;
+
+  const handleViewChange = (view: string) => {
+    setCurrentView(view as Views);
+  };
+
   return (
     <Box
       sx={{
@@ -64,20 +78,70 @@ export default function Sidebar() {
           />
         </Badge>
         <Stack spacing={3} alignItems="center" paddingTop={2}>
-          <HomeOutlined sx={iconStyles} />
-          <PersonOutlineOutlined sx={iconStyles} />
-          <GrainOutlined sx={iconStyles} />
+          <HomeOutlined
+            sx={{
+              ...iconStyles,
+              color: currentView === "Home" ? "primary.main" : "grey.600",
+            }}
+            onClick={() => handleViewChange("Home")}
+          />
+          <PersonOutlineOutlined
+            sx={{
+              ...iconStyles,
+              color: currentView === "User" ? "primary.main" : "grey.600",
+            }}
+            onClick={() => handleViewChange("User")}
+          />
+          <GrainOutlined
+            sx={{
+              ...iconStyles,
+              color: currentView === "Workflow" ? "primary.main" : "grey.600",
+            }}
+            onClick={() => handleViewChange("Workflow")}
+          />
           <Badge color="primary" variant="dot">
-            <MessageOutlined sx={iconStyles} />
+            <MessageOutlined
+              sx={{
+                ...iconStyles,
+                color:
+                  currentView === "IncomingMessages"
+                    ? "primary.main"
+                    : "grey.600",
+              }}
+              onClick={() => handleViewChange("IncomingMessages")}
+            />
           </Badge>
-          <SendOutlined sx={iconStyles} />
-          <SettingsOutlined sx={iconStyles} />
+          <SendOutlined
+            sx={{
+              ...iconStyles,
+              color:
+                currentView === "SentMessages" ? "primary.main" : "grey.600",
+            }}
+            onClick={() => handleViewChange("SentMessages")}
+          />
+          <SettingsOutlined
+            sx={{
+              ...iconStyles,
+              color: currentView === "Settings" ? "primary.main" : "grey.600",
+            }}
+            onClick={() => handleViewChange("Settings")}
+          />
         </Stack>
       </Stack>
 
       <Stack spacing={2} alignItems="center" width="100%">
         <Tooltip title="Profile">
-          <Avatar alt="User" src="/avatar.png" sx={{ width: 25, height: 25 }} />
+          <Avatar
+            alt="User"
+            src="/avatar.png"
+            sx={{
+              width: 25,
+              height: 25,
+              cursor: "pointer",
+              ":hover": { opacity: 0.8 },
+            }}
+            onClick={() => handleViewChange("UserProfile")}
+          />
         </Tooltip>
         <HelpOutline sx={iconStyles} />
       </Stack>
