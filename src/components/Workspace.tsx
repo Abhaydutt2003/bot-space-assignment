@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import type { ReactNode } from "react";
 
 interface WorkspaceProps {
-  children?: ReactNode;
+  children: ReactNode;
 }
 
 const Workspace = ({ children }: WorkspaceProps) => {

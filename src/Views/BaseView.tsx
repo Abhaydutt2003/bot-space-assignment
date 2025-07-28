@@ -1,14 +1,14 @@
 import { Stack } from "@mui/material";
-import { useContext } from "react";
+import { lazy, Suspense, useContext } from "react";
 import { Sidebar } from "../components";
 import { AppContext } from "../Providers/contexts";
-import Home from "./Home";
-import User from "./User";
-import UserProfile from "./UserProfile";
-import Workflow from "./Workflow";
-import IncomingMessages from "./IncomingMessages";
-import SentMessages from "./SentMessages";
-import { Settings } from "@mui/icons-material";
+const Home = lazy(() => import("./Home"));
+const User = lazy(() => import("./User"));
+const UserProfile = lazy(() => import("./UserProfile"));
+const Workflow = lazy(() => import("./Workflow"));
+const IncomingMessages = lazy(() => import("./IncomingMessages"));
+const SentMessages = lazy(() => import("./SentMessages"));
+const Settings = lazy(() => import("./Settings"));
 
 const BaseView = () => {
   const appContext = useContext(AppContext);
@@ -45,7 +45,7 @@ const BaseView = () => {
   return (
     <Stack direction="row" sx={{ height: "100vh" }}>
       <Sidebar />
-      <Stack sx={{ flex: 1, p: 2 }}>{renderView()}</Stack>
+      <Suspense fallback={<>Loading...</>}>{renderView()}</Suspense>
     </Stack>
   );
 };

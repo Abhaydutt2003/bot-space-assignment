@@ -18,11 +18,16 @@ interface AppContextType {
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 export type { Views, AppContextType };
 
+//Mobile context
 type MobileViews = "Chat" | "Comment" | "Post";
 
 interface MobileContextType {
   currentMobileView: MobileViews;
   setCurrentMobileView: (mobileView: MobileViews) => void;
+  currentPostId: number;
+  currentComment: string;
+  setCurrentPostId: (newPostId: number) => void;
+  setCurrentComment: (newComment: string) => void;
 }
 
 export const MobileContext = createContext<MobileContextType | undefined>(
