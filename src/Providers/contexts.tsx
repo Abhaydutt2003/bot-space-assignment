@@ -26,6 +26,13 @@ interface MobileContextType {
   setCurrentMobileView: (mobileView: MobileViews) => void;
   currentPostId: number;
   currentComment: string;
+  openingDM: string;
+  openingDmLink: string;
+  dms: string[];
+  setDm: (newDm: string, index: number) => void;
+  addDm: (newDm: string) => void;
+  setOpeningDmLink: (openingDmLink: string) => void;
+  setOpeningDM: (newOpeningDm: string) => void;
   setCurrentPostId: (newPostId: number) => void;
   setCurrentComment: (newComment: string) => void;
 }

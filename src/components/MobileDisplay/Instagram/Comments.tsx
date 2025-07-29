@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, Typography } from "@mui/material";
+import { Avatar, Box, Divider, Stack, Typography } from "@mui/material";
 import { useContext } from "react";
 import { MobileContext } from "../../../Providers/contexts";
 
@@ -19,7 +19,7 @@ const Comments = () => {
       flexDirection={"column"}
       justifyContent={"space-between"}
       boxSizing={"border-box"}
-      paddingBottom={"13px"}
+      paddingBottom={"3px"}
       paddingTop={"10px"}
       alignItems={"center"}
     >
@@ -112,14 +112,27 @@ const Comments = () => {
           </svg>
         </Box>
       </Box>
-      <Box
-        display={"flex"}
-        flexDirection={"column"}
-        gap={"10px"}
+      <Stack
+        direction={"column"}
         alignItems={"center"}
         width={"100%"}
         padding={"0.6rem"}
       >
+        <Stack
+          direction={"row"}
+          spacing={1}
+          width={"100%"}
+          justifyContent={"space-between"}
+        >
+          <span>❤️</span>
+          <span>🙌</span>
+          <span>🔥</span>
+          <span>👏</span>
+          <span>😢</span>
+          <span>😍</span>
+          <span>😮</span>
+          <span>🤣</span>
+        </Stack>
         <Box
           display={"flex"}
           paddingY={"0.6rem"}
@@ -139,9 +152,9 @@ const Comments = () => {
             fontSize={"x-small"}
             fontWeight={"bold"}
             sx={{
-              color: "grey.600",
+              color: "grey.700",
               border: "1px solid",
-              borderColor: "grey.600",
+              borderColor: "grey.700",
               padding: "10px",
               borderRadius: "20px",
             }}
@@ -151,13 +164,14 @@ const Comments = () => {
         </Box>
         <Box
           sx={{
+            marginTop: "10px",
             width: 100,
-            height: 5,
+            height: 4.5,
             bgcolor: "background.default",
             borderRadius: 3,
           }}
         />
-      </Box>
+      </Stack>
     </Box>
   );
 };

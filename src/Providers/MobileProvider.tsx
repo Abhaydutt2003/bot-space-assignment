@@ -5,6 +5,7 @@ interface MobileProviderProps {
   children: ReactNode;
 }
 
+//this state management can be much better( eg -> normalization, useReducer etc), but this was built in a hurry
 const MobileProvider = ({ children }: MobileProviderProps) => {
   const [currentMobileView, setCurrentMobileView] =
     useState<MobileViews>("Post");
@@ -14,6 +15,10 @@ const MobileProvider = ({ children }: MobileProviderProps) => {
   const [openingDM, setOpeningDM] = useState<string>(
     "Hey there! I'm so happy you're here , thanks so much for your interest😊 Click below and I'll send you the link in just a sec ✨"
   );
+  const [openingDmLink, setOpeningDmLink] =
+    useState<string>("Send me the Link");
+  const [dms, setDms] = useState<string[]>(["Link"]);
+
   const value = {
     currentMobileView,
     setCurrentMobileView,
@@ -21,6 +26,16 @@ const MobileProvider = ({ children }: MobileProviderProps) => {
     currentComment,
     openingDM,
     setOpeningDM,
+    openingDmLink,
+    dms,
+    addDm: (newDm: string) => setDms((prev) => [...prev, newDm]),
+    setDm: (newDm: string, index: number) =>
+      setDms((prev) => {
+        const newDms = [...prev];
+        newDms[index] = newDm;
+        return newDms;
+      }),
+    setOpeningDmLink,
     setCurrentComment: (newComment: string) => {
       setCurrentComment(newComment);
       setCurrentMobileView("Comment");
