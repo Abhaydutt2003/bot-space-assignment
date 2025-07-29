@@ -12,8 +12,6 @@ import {
 import { useContext } from "react";
 import { AppContext, type Views } from "../Providers/contexts";
 
-import botspaceLogo from "../assets/botspace_logo.jpg";
-
 const iconStyles = {
   color: "grey.600",
   ":hover": {
@@ -72,7 +70,7 @@ export default function Sidebar() {
           }}
         >
           <img
-            src={botspaceLogo}
+            src={"/botspace_logo.jpg"}
             alt="BotSpace Logo"
             style={{ width: 30, height: 30 }}
           />
